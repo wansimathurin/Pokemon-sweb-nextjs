@@ -2,9 +2,30 @@
 import Navbar from "@/components/navbarComponent/Navbar";
 import { ToastContainer, toast } from 'react-toastify';
 import { FaHeart } from "react-icons/fa";
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
 const page = () => {
-    const notify = () => toast('Wow so easy !');
+  const notify = () => toast('Wow so easy !');
+  
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, {
+        publicKey: 'YOUR_PUBLIC_KEY',
+      })
+      .then(
+        () => {
+          console.log('SUCCESS!');
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+        },
+      );
+  };
     return (
         <>
         <Navbar />
@@ -25,15 +46,15 @@ const page = () => {
         </div>
 
         {/* Right Side Form */}
-        <div className="md:w-1/2 p-8">
+        <form className="md:w-1/2 p-8">
           <h2 className="text-3xl font-bold text-gray-800 mb-6">Contact Us</h2>
           <div className="space-y-4">
             <div>
               <label className="block text-gray-700">Name</label>
               <input
                 type="text"
-                              placeholder="Your Name"
-                              name="name"
+                  placeholder="Your Name"
+                  name="name"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -72,7 +93,7 @@ const page = () => {
               Send Message
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
        </>
