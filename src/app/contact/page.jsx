@@ -1,14 +1,18 @@
+"use client"
 import Navbar from "@/components/navbarComponent/Navbar";
+import { ToastContainer, toast } from 'react-toastify';
 import { FaHeart } from "react-icons/fa";
 
 const page = () => {
+    const notify = () => toast('Wow so easy !');
     return (
         <>
         <Navbar />
-        <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
-          {/* <ToastContainer
+            <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+                
+          <ToastContainer
             position="top-center"
-          />  */}
+          /> 
       <div className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row w-full max-w-5xl">
         
         {/* Left Side Image */}
@@ -62,7 +66,7 @@ const page = () => {
             </div>
             <button
                type="button"
-            //    onClick={()=>notify()}
+               onClick={()=>notify()}
               className="w-full bg-[#F6C63E] text-white py-2 rounded-md hover:bg-amber-700 transition"
             >
               Send Message
